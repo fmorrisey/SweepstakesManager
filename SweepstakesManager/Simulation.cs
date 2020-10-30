@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace SweepstakesManager
 {
+    /// <summary>
+    /// <para>SIMULATION</para>
+    /// Initializes the marketing firm software
+    /// Sweepstakes Management System
+    /// </summary>
     public class Simulation
     {
         public Simulation()

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SweepstakesManager
 {
+    /// <summary>
+    /// <para>MAIN RUN-TIME PROGRAM</para>
+    /// </summary>
     class Program
     {
         static void Main(string[] args)

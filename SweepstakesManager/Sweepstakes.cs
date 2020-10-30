@@ -9,14 +9,18 @@ namespace SweepstakesManager
 {
     public class Sweepstakes
     {
-        private Dictionary<int, Contestant> contestants;
-        private string name;
+        /// <summary>
+        /// <para>Sweepstakes</para>
+        /// 
+        /// </summary>
+        private Dictionary<int, Contestant> _contestants;
+        private string _name;
         public string Name;
 
         public Sweepstakes(string name)
         {
-            this.name = name;
-            contestants = new Dictionary<int, Contestant>();
+            this._name = name;
+            _contestants = new Dictionary<int, Contestant>();
         }
 
         public void RegistraterContestant(Contestant contestant)
@@ -27,7 +31,7 @@ namespace SweepstakesManager
             //USER INPUT HERE // CALL UI
             contestant = new Contestant("", "", "@", 0001);
             // Add to Dictionary
-            contestants.Add(value, contestant);
+            _contestants.Add(value, contestant);
 
         }
 

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace SweepstakesManager
 {
+    /// <summary>
+    /// <para>Contestant</para>
+    /// The object model of each contestant in their respective sweepstakes
+    /// </summary>
     public class Contestant
     {
         public string FirstName;
