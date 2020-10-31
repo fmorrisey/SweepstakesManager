@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UniqueID.cs" />
     <Compile Include="Contestant.cs" />
     <Compile Include="ISweepstakesManager.cs" />
     <Compile Include="MarketingFirm.cs" />
