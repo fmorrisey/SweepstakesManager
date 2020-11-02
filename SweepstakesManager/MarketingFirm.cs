@@ -22,7 +22,7 @@ namespace SweepstakesManager
         /// </summary>
         public void CreateSweepstakes() // Load Game
         {
-            string sweepStakesName = UI.CreateName("Create a name!");
+            string sweepStakesName = UI.CreateName("Name Your Sweepstakes!");
             sweepstakes = new Sweepstakes(sweepStakesName);
             _manager.InsertSweepstakes(sweepstakes);
         }
@@ -42,8 +42,6 @@ namespace SweepstakesManager
                 selectedContestant = sweepstakes.PickWinner();
                 sweepstakes.PrintContestantInfo(selectedContestant);
             }
-            
-
             
         }
 

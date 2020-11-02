@@ -31,8 +31,8 @@ namespace SweepstakesManager
 
         public Sweepstakes GetSweepstakes()
         {
-
-            return null;
+            return _stack.Peek();
+            
         }
     }
 }
