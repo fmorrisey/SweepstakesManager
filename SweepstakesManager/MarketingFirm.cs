@@ -27,28 +27,22 @@ namespace SweepstakesManager
             _manager.InsertSweepstakes(sweepstakes);
         }
 
-        public void ManageSweepstakes()
+        public void ManageSweepstakes() //Testing AREA
         {
+            Contestant selectedContestant;
             // Dumps a bunch of contestant into the sweepstakes for testing
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
-            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            int poolSize = 100000;
+            for (int i = 0; i < poolSize; i++)
+            {
+                sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                selectedContestant = sweepstakes.PickWinner();
+                sweepstakes.PrintContestantInfo(selectedContestant);
+            }
+            
 
             
         }

@@ -22,18 +22,17 @@ namespace SweepstakesManager
         
         public void Run()
         {
-            CreateMarketingFirmWithManager();
-            
-            marketingFirm.CreateSweepstakes();
+            int testLoops = 5;
+            for (int i = 0; i < testLoops; i++)
+            {
+                CreateMarketingFirmWithManager();
 
-            marketingFirm.ManageSweepstakes();
+                marketingFirm.CreateSweepstakes();
 
-            marketingFirm.CreateSweepstakes();
-
-            marketingFirm.ManageSweepstakes();
-
-
-
+                marketingFirm.ManageSweepstakes();
+                Console.ReadLine();
+            }
+            Console.ReadLine();
         }
 
         /// <summary>

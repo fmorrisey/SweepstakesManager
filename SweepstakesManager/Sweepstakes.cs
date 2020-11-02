@@ -31,8 +31,6 @@ namespace SweepstakesManager
             _counter = 0;
             _RegistrationID = new List<int>(_counter);
             
-            
-            
         }
 
         public void RegistraterContestant(Contestant contestant)
@@ -43,9 +41,16 @@ namespace SweepstakesManager
 
         public Contestant CreateNewContestant()
         {
-            // Later implementation to manually enter Contestant values REGID is Abstract
             int regid = GenerateUniqueID();
+            /*
+            string fName = UI.CreateName("Enter First Name");
+            string lName = UI.CreateName("Enter Last Name");
+            string email = UI.CreateEmail("Please enter a valid email");
+            Console.WriteLine($"Auto geneated RegID Number is {regid}");
+            */
+
             Contestant contestant = new Contestant("Timmy", "Test", "TheBestTestIn@TheWest.biz", regid);
+            //Contestant contestant = new Contestant(fName, lName, email, regid);
             return contestant;
         }
 
@@ -58,7 +63,7 @@ namespace SweepstakesManager
         {
             Console.WriteLine($"Name:  {contestant.FirstName} {contestant.LastName}");
             Console.WriteLine($"Email: {contestant.EmailAddress}");
-            Console.WriteLine($"RegID: {contestant.RegistrationNumber}");
+            Console.WriteLine($"RegID: {contestant.RegistrationNumber} \n");
         }
 
         private int GenerateUniqueID()
@@ -73,7 +78,7 @@ namespace SweepstakesManager
             Random Random;
             Random = new Random(Guid.NewGuid().GetHashCode());
             int hash = 0;
-            return hash = Random.Next(contestantNumber);
+            return hash = Random.Next(contestantNumber - 1);
         }
 
     }

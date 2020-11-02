@@ -33,10 +33,38 @@ namespace SweepstakesManager
 
             Console.WriteLine(prompt);      // Prompt is passed and printed
             userInput = Console.ReadLine(); // Get input
+            
+            userInput = userInput.Trim();   // Format
+            return userInput;
+
+        }
+
+        public static string CreateEmail(string prompt)
+        {
+            string userInput;
+            bool askAgain;
+
+            Console.WriteLine(prompt);      // Prompt is passed and printed
+            do
+            {
+                userInput = Console.ReadLine(); // Get input
+                if (userInput.Contains("@") && userInput.Contains("."))
+                {
+                    return userInput;
+                }
+                else
+                {
+                    Console.WriteLine("Not a valid email!");
+                    askAgain = true;
+                }
+
+            } while (askAgain == true);
 
             return userInput;
 
         }
+
+
 
         public static int IntInputValidation(string message)
         {   // Handles Main Menu user input with validation
