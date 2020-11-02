@@ -27,6 +27,17 @@ namespace SweepstakesManager
 
         }
 
+        public static string CreateName(string prompt)
+        {
+            string userInput;
+
+            Console.WriteLine(prompt);      // Prompt is passed and printed
+            userInput = Console.ReadLine(); // Get input
+
+            return userInput;
+
+        }
+
         public static int IntInputValidation(string message)
         {   // Handles Main Menu user input with validation
             bool askAgain;
@@ -75,18 +86,21 @@ namespace SweepstakesManager
         public static void DisplayMainMenu()
         {   //DRAWS AI SPECIFIC MENU FOR THE COMPUTER AI
             Console.WriteLine("###### WELCOME TO ###### \n" +
-                              "##### SODA MACHINE ##### \n" +
-                              "  [1] Beverage Selection\n" +
-                              "  [2] Check Wallet\n" +
-                              "  [3] Check Backpack \n\n" +
-                              "  [4] Check Soda Inventory \n\n" +
+                              "##### Marketing Firm ##### \n" +
+                              "  [1] Register contestant\n" +
+                              "  [2] Create Sweepstakes\n" +
+                              "  [3] \n\n" +
+                              "  [4] \n\n" +
                               "    \n" +
                               "  [5] Exit \n");
             MenuDecorators("hashlong");
+            
 
         }
 
-        public static void DisplaySodaSelction()
+        
+
+        public static void DisplayRegisterContestant()
         {   //DRAWS MENU SODA SELECTION
             Console.WriteLine($"######## SODA MACHINE ######## \n" +
                               "Pick you favorite beverage \n" +

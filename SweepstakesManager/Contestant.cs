@@ -17,6 +17,7 @@ namespace SweepstakesManager
         public string EmailAddress;
         public int RegistrationNumber;
 
+        // Add a method injection for email
         public Contestant(string firstName, string lastName, string emailAddress, int registrationNumber)
         {
             this.FirstName = firstName;

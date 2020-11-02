@@ -16,7 +16,11 @@ namespace SweepstakesManager
         private Dictionary<int, Contestant> _contestants;
         private List<int> _uniqueID;
         private string _name;
-        public string Name;
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
 
         public Sweepstakes(string name)
         {

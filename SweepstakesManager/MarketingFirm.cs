@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SweepstakesManager
 {
@@ -17,26 +13,25 @@ namespace SweepstakesManager
         public MarketingFirm(ISweepstakesManager manager)
         {
             this._manager = manager;
+
         }
 
+        /// <summary>
+        /// Switch case to create a queue or stack manager
+        /// </summary>
         public void CreateSweepstakes() // Load Game
         {
-            //switch case to create a queue or stack
-            bool askAgain = false;
-
-            do
-            {
-                string SManagerType = UI.GetUserInputFor("Select Queue or Stack");
-                switch (SManagerType)
-                {
-                    case "stack": _manager = new SweepstakesStackManager(); askAgain = false;  break;
-                    case "queue": _manager = new SweepstakesQueueManager(); askAgain = false; break;
-                    default: Console.WriteLine("Invalid Input"); break;
-                }
-            } while (askAgain == true);
+            string sweepStakesName = UI.CreateName("Create a name!");
+            Sweepstakes sweepstakes = new Sweepstakes(sweepStakesName);
+            _manager.InsertSweepstakes(sweepstakes);
         }
 
-        
+        private string CreateSweepstakesName()
+        {
+            string sweeptakesName;
+            return sweeptakesName = UI.GetUserInputFor("What would like to call this sweepstakes?");
+        }
+
 
     }
 }
