@@ -18,7 +18,7 @@ namespace SweepstakesManager
 
         }
 
-        public Sweepstakes GetSweepstakes()
+        public Sweepstakes GetSweepstakes() // retuns a sweepstakes
         {
             return null;
         }

@@ -14,15 +14,18 @@ namespace SweepstakesManager
     public static class UI
     {
         /////////////// INPUT VALIDATION ///////////////
-        static string GetUserInputFor(string prompt)
+        public static string GetUserInputFor(string prompt)
         {
-            // String 
-            // 1. RegisterContestant
+            string userInput;
 
-            return prompt;
+            Console.WriteLine(prompt);      // Prompt is passed and printed
+            userInput = Console.ReadLine(); // Get input
+            userInput = userInput.Trim();   // Format
+            userInput = userInput.ToLower();// Format
+
+            return userInput;
+
         }
-
-
 
         public static int IntInputValidation(string message)
         {   // Handles Main Menu user input with validation

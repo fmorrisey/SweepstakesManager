@@ -14,7 +14,7 @@ namespace SweepstakesManager
         static void Main(string[] args)
         {
             Simulation simulation = new Simulation();
-            simulation.Run();
+            simulation.CreateMarketingFirmWithManager();
         }
     }
 }

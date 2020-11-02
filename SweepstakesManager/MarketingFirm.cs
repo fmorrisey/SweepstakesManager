@@ -16,12 +16,27 @@ namespace SweepstakesManager
 
         public MarketingFirm(ISweepstakesManager manager)
         {
-
+            this._manager = manager;
         }
 
-        public void CreateSweepstakes()
+        public void CreateSweepstakes() // Load Game
         {
+            //switch case to create a queue or stack
+            bool askAgain = false;
 
+            do
+            {
+                string SManagerType = UI.GetUserInputFor("Select Queue or Stack");
+                switch (SManagerType)
+                {
+                    case "stack": _manager = new SweepstakesStackManager(); askAgain = false;  break;
+                    case "queue": _manager = new SweepstakesQueueManager(); askAgain = false; break;
+                    default: Console.WriteLine("Invalid Input"); break;
+                }
+            } while (askAgain == true);
         }
+
+        
+
     }
 }
