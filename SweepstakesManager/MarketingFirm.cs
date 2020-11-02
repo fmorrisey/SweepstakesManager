@@ -26,11 +26,7 @@ namespace SweepstakesManager
             _manager.InsertSweepstakes(sweepstakes);
         }
 
-        private string CreateSweepstakesName()
-        {
-            string sweeptakesName;
-            return sweeptakesName = UI.GetUserInputFor("What would like to call this sweepstakes?");
-        }
+
 
 
     }

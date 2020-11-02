@@ -13,10 +13,11 @@ namespace SweepstakesManager
     {
         private Queue<Sweepstakes> _queue;
 
-        /// <summary>
-        /// Adds a SweepStakes to the queue.
-        /// </summary>
-        /// <param name="sweepstakes"></param>
+        
+        public SweepstakesQueueManager()
+        {
+            _queue = new Queue<Sweepstakes>();
+        }
         public void InsertSweepstakes(Sweepstakes sweepstakes)
         {
             _queue.Enqueue(sweepstakes);

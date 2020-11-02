@@ -23,10 +23,11 @@ namespace SweepstakesManager
         public void Run()
         {
             CreateMarketingFirmWithManager();
-            // pass to UI?
             
-            
-            LogicMainMenu();
+            marketingFirm.CreateSweepstakes();
+
+
+
         }
 
         /// <summary>
@@ -56,18 +57,23 @@ namespace SweepstakesManager
 
         }
 
+        /// <summary>
+        /// IMPLEMENTATION FOR UI
+        /// </summary>
+        /// <para>RETURN LATER</para>
+        /*
         public void LogicMainMenu()
         {
             UI.DisplayMainMenu();
-            int options = UI.IntInputValidation("Pick a selction");
+            int options = UI.IntInputValidation("Pick a selection");
 
             switch (options)
             {
                 case 1: ISweepstakesManager(marketingFirm)
-                case 2: marketingFirm.CreateSweepstakes(); break;
+                case 2: ; break;
                 default: break;
             }
         }
-
+        */
     }
 }
