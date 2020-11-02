@@ -41,6 +41,7 @@ namespace SweepstakesManager
             {
                 selectedContestant = sweepstakes.PickWinner();
                 sweepstakes.PrintContestantInfo(selectedContestant);
+                sweepstakes.EmailContestant(selectedContestant);
             }
             
         }

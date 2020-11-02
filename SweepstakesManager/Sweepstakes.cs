@@ -4,6 +4,10 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
+
 
 namespace SweepstakesManager
 {
@@ -48,8 +52,8 @@ namespace SweepstakesManager
             string email = UI.CreateEmail("Please enter a valid email");
             Console.WriteLine($"Auto geneated RegID Number is {regid}");
             */
-
-            Contestant contestant = new Contestant("Timmy", "Test", "TheBestTestIn@TheWest.biz", regid);
+            // TheBestTestIn@TheWest.biz
+            Contestant contestant = new Contestant("Timmy", "Test", "wakihe4437@50000z.com", regid);
             //Contestant contestant = new Contestant(fName, lName, email, regid);
             return contestant;
         }
@@ -57,6 +61,32 @@ namespace SweepstakesManager
         public Contestant PickWinner()
         {
             return _contestants[GenerateRandomInt(_contestants.Count())]; // return contestant
+        }
+
+        public void EmailContestant(Contestant sc)
+        {
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("BEN BREAKING", "throwmeawaybreakingben@gmail.com"));
+            message.To.Add(new MailboxAddress("Mrs. Chanandler Bong", sc.EmailAddress));
+            message.Subject = "WINNNNERERRRR";
+
+            message.Body = new TextPart("plain")
+            {
+                Text = $"Congratualtions {sc.FirstName} {sc.LastName} \n" +
+                        $" You have won the {_name} Sweepstakes! \n"
+            };
+
+            using (var client = new SmtpClient())
+            {
+                client.Connect("smtp.gmail.com", 587);
+
+                // Note: only needed if the SMTP server requires authentication
+                client.Authenticate("throwmeawaybreakingben@gmail.com", "");
+
+                client.Send(message);
+                client.Disconnect(true);
+
+            }
         }
 
         public void PrintContestantInfo(Contestant contestant)
