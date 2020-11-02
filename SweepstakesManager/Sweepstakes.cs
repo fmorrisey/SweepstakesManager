@@ -57,13 +57,22 @@ namespace SweepstakesManager
 
         public Contestant PickWinner()
         {
-            //RandCall
-            return null; // return contestant
+            return _contestants[GenerateRandomInt(_contestants.Count())]; // return contestant
         }
 
         public void PrintContestantInfo(Contestant contestant)
         {
-            Console.WriteLine(contestant);
+            Console.WriteLine($"{contestant.FirstName} {contestant.LastName}");
+            Console.WriteLine($"{contestant.EmailAddress}");
+            Console.WriteLine($"{contestant.RegistrationNumber}");
+        }
+
+        public int GenerateRandomInt(int contestantNumber)
+        {   // Generates a random number
+            Random Random;
+            Random = new Random(Guid.NewGuid().GetHashCode());
+            int hash = 0;
+            return hash = Random.Next(contestantNumber);
         }
 
     }
