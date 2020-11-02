@@ -15,6 +15,8 @@ namespace SweepstakesManager
         /// </summary>
         private Dictionary<int, Contestant> _contestants;
         private List<int> _RegistrationID;
+        private int _counter;
+        
         private string _name;
         public string Name
         {
@@ -26,33 +28,25 @@ namespace SweepstakesManager
         {
             this._name = name;
             _contestants = new Dictionary<int, Contestant>();
-            _RegistrationID = new List<int>();
+            _counter = 0;
+            _RegistrationID = new List<int>(_counter);
+            
+            
+            
         }
 
         public void RegistraterContestant(Contestant contestant)
         {
-            // Make sure to use a unique ID for each
-            // Create a unique ID LIST
-            int regID = GenerateUniqueID();
-            // Create Contestant OBJS
-            //USER INPUT HERE // CALL UI
-            contestant = new Contestant("Timmy", "Test", "TheBestTestIn@TheWest.biz",regID);
-            // Add to Dictionary
+            int regID = contestant.RegistrationNumber;
             _contestants.Add(regID, contestant);
-
         }
 
-        public int GenerateUniqueID()
+        public Contestant CreateNewContestant()
         {
-            for (int i = 0; i < _RegistrationID.Count; i++)
-            {
-                if (_RegistrationID.Contains(_RegistrationID[i]) == false) //Does not contain
-                {
-                    _RegistrationID.Add(_RegistrationID[i]);    // add new Id
-                    return i;                       // return that int
-                }
-            }
-            return default;
+            // Later implementation to manually enter Contestant values REGID is Abstract
+            int regid = GenerateUniqueID();
+            Contestant contestant = new Contestant("Timmy", "Test", "TheBestTestIn@TheWest.biz", regid);
+            return contestant;
         }
 
         public Contestant PickWinner()
@@ -62,12 +56,19 @@ namespace SweepstakesManager
 
         public void PrintContestantInfo(Contestant contestant)
         {
-            Console.WriteLine($"{contestant.FirstName} {contestant.LastName}");
-            Console.WriteLine($"{contestant.EmailAddress}");
-            Console.WriteLine($"{contestant.RegistrationNumber}");
+            Console.WriteLine($"Name:  {contestant.FirstName} {contestant.LastName}");
+            Console.WriteLine($"Email: {contestant.EmailAddress}");
+            Console.WriteLine($"RegID: {contestant.RegistrationNumber}");
         }
 
-        public int GenerateRandomInt(int contestantNumber)
+        private int GenerateUniqueID()
+        {
+            _counter++;
+            _RegistrationID.Add(_counter);
+            return _counter;
+        }
+
+        private int GenerateRandomInt(int contestantNumber)
         {   // Generates a random number
             Random Random;
             Random = new Random(Guid.NewGuid().GetHashCode());

@@ -26,6 +26,12 @@ namespace SweepstakesManager
             
             marketingFirm.CreateSweepstakes();
 
+            marketingFirm.ManageSweepstakes();
+
+            marketingFirm.CreateSweepstakes();
+
+            marketingFirm.ManageSweepstakes();
+
 
 
         }

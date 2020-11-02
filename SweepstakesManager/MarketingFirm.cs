@@ -9,6 +9,7 @@ namespace SweepstakesManager
     public class MarketingFirm
     {
         private ISweepstakesManager _manager;
+        Sweepstakes sweepstakes;
 
         public MarketingFirm(ISweepstakesManager manager)
         {
@@ -22,11 +23,35 @@ namespace SweepstakesManager
         public void CreateSweepstakes() // Load Game
         {
             string sweepStakesName = UI.CreateName("Create a name!");
-            Sweepstakes sweepstakes = new Sweepstakes(sweepStakesName);
+            sweepstakes = new Sweepstakes(sweepStakesName);
             _manager.InsertSweepstakes(sweepstakes);
         }
 
+        public void ManageSweepstakes()
+        {
+            // Dumps a bunch of contestant into the sweepstakes for testing
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
+            sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
 
+            
+        }
 
 
     }

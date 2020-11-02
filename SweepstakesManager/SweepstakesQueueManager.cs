@@ -25,8 +25,7 @@ namespace SweepstakesManager
 
         public Sweepstakes GetSweepstakes() // returns a sweepstakes
         {
-            //_queue.Dequeue(null);
-            return null;
+            return _queue.Peek();
         }
 
         

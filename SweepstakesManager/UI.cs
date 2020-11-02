@@ -90,7 +90,7 @@ namespace SweepstakesManager
                               "  [1] Register contestant\n" +
                               "  [2] Create Sweepstakes\n" +
                               "  [3] \n\n" +
-                              "  [4] \n\n" +
+                              "  [4] \n\n" + 
                               "    \n" +
                               "  [5] Exit \n");
             MenuDecorators("hashlong");
