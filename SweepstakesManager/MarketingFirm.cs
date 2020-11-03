@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SweepstakesManager
+﻿namespace SweepstakesManager
 {
     /// <summary>
     /// <para>Marketing Firm</para>
@@ -37,13 +35,12 @@ namespace SweepstakesManager
                 sweepstakes.RegistraterContestant(sweepstakes.CreateNewContestant());
             }
 
-            for (int i = 0; i < 3; i++)
-            {
-                selectedContestant = sweepstakes.PickWinner();
-                sweepstakes.PrintContestantInfo(selectedContestant);
-                sweepstakes.EmailContestant(selectedContestant);
-            }
-            
+            selectedContestant = sweepstakes.PickWinner();
+            sweepstakes.PrintContestantInfo(selectedContestant);
+
+            sweepstakes.sendemail(selectedContestant);
+        
+
         }
 
 
