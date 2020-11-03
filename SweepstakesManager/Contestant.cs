@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SweepstakesManager
+﻿namespace SweepstakesManager
 {
     /// <summary>
     /// <para>Contestant</para>
@@ -17,7 +11,6 @@ namespace SweepstakesManager
         public string EmailAddress;
         public int RegistrationNumber;
 
-        // Add a method injection for email
         public Contestant(string firstName, string lastName, string emailAddress, int registrationNumber)
         {
             this.FirstName = firstName;
@@ -25,7 +18,7 @@ namespace SweepstakesManager
             this.EmailAddress = emailAddress;
             this.RegistrationNumber = registrationNumber;
         }
-        
+
 
     }
 }

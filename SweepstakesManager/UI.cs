@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace SweepstakesManager
 {
@@ -15,32 +10,60 @@ namespace SweepstakesManager
     {
         /////////////// INPUT VALIDATION ///////////////
         public static string GetUserInputFor(string prompt)
-        {
+        {   // User input validation for a menu options with a string return
             string userInput;
+            bool askAgain;
 
-            Console.WriteLine(prompt);      // Prompt is passed and printed
-            userInput = Console.ReadLine(); // Get input
-            userInput = userInput.Trim();   // Format
-            userInput = userInput.ToLower();// Format
+            do
+            {
+                Console.WriteLine(prompt);      // Prompt is passed and printed
+                userInput = Console.ReadLine(); // Get input
+                if (userInput.Contains(""))
+                {
+                    Console.WriteLine("Nothing was entered");
+                    askAgain = true;
+                }
+                else
+                {
+                    userInput = userInput.Trim();   // Format
+                    userInput = userInput.ToLower();// Format
 
+                    return userInput;
+                }
+
+            } while (askAgain == true);
             return userInput;
 
         }
 
         public static string CreateName(string prompt)
-        {
+        {   // User input validation for creating a name string
             string userInput;
+            bool askAgain;
 
-            Console.WriteLine(prompt);      // Prompt is passed and printed
-            userInput = Console.ReadLine(); // Get input
-            
-            userInput = userInput.Trim();   // Format
+            do
+            {
+                Console.WriteLine(prompt);      // Prompt is passed and printed
+                userInput = Console.ReadLine(); // Get input
+                if (userInput.Contains(""))
+                {
+                    Console.WriteLine("Nothing was entered");
+                    askAgain = true;
+                }
+                else
+                {
+                    userInput = userInput.Trim();   // Format
+                    return userInput;
+                }
+
+            } while (askAgain == true);
             return userInput;
-
         }
 
         public static string CreateEmail(string prompt)
-        {
+        {   // Handles user input validation for emails
+            // Will not return email address unless it contains an @ and a period
+
             string userInput;
             bool askAgain;
 
@@ -51,6 +74,11 @@ namespace SweepstakesManager
                 if (userInput.Contains("@") && userInput.Contains("."))
                 {
                     return userInput;
+                }
+                else if (userInput.Contains(""))
+                {
+                    Console.WriteLine("You did not enter anything");
+                    askAgain = true;
                 }
                 else
                 {
@@ -65,9 +93,8 @@ namespace SweepstakesManager
         }
 
 
-
         public static int IntInputValidation(string message)
-        {   // Handles Main Menu user input with validation
+        {   // Handles user input with validation for integers
             bool askAgain;
             int UserInput;
 
@@ -87,122 +114,33 @@ namespace SweepstakesManager
 
         }
 
-        public static double DoubleInputValidation()
-        {
-            // Handles Main Menu user input with validation
-            bool askAgain;
-            double UserInput;
-
-            do
-            {
-                Console.Write("Enter a dollar amount: ");
-                if (double.TryParse(Console.ReadLine(), out UserInput))
-                { return UserInput; }
-                else
-                {
-                    Console.WriteLine("Incorrect Input");
-                    askAgain = true;
-                }
-            } while (askAgain == true);
-
-            return UserInput;
-        }
-
-
-
         /////////////// UI DISPLAY / DRAW ///////////////
         public static void DisplayMainMenu()
-        {   //DRAWS AI SPECIFIC MENU FOR THE COMPUTER AI
-            Console.WriteLine("###### WELCOME TO ###### \n" +
-                              "##### Marketing Firm ##### \n" +
-                              "  [1] Register contestant\n" +
-                              "  [2] Create Sweepstakes\n" +
-                              "  [3] \n\n" +
-                              "  [4] \n\n" + 
+        {   //DRAWS A MENU FOR THE MAIN MENU
+            Console.WriteLine("############## WELCOME TO ############ \n" +
+                              "##### Sweepstakes Marketing Firm ##### \n" +
+                              "  [1] Create New Sweepstakes\n" +
+                              "  [2] Select Existing SweepStakes\n" +
+                              "  [3] Exit\n\n" +
+                              "  [4] \n\n" +
                               "    \n" +
                               "  [5] Exit \n");
             MenuDecorators("hashlong");
-            
 
         }
 
-        
-
-        public static void DisplayRegisterContestant()
-        {   //DRAWS MENU SODA SELECTION
-            Console.WriteLine($"######## SODA MACHINE ######## \n" +
-                              "Pick you favorite beverage \n" +
-                             $"  [1] Root Beer | $0.60 \n" +
-                             $"  [2] Orange Soda |$0.06 \n" +
-                             $"  [3] Cola | $0.35 \n\n");
+        public static void DisplayContestantManager()
+        {   //DRAWS A MENU TO MANAGE CONTESTANTS
+            Console.WriteLine("######### Sweepstakes ######## \n" +
+                              "##### Contestant Manager ##### \n" +
+                              "  [1] Find contestant\n" +
+                              "  [2] Register contestant\n" +
+                              "  [3] Pick a sweepstakes winner\n\n" +
+                              "  [4] Winning Contestants\n\n" +
+                              "    \n" +
+                              "  [5] Exit \n");
             MenuDecorators("hashlong");
 
-        }
-
-        public static void ExitMessageDraw()
-        {
-            Console.WriteLine("Created by: Forrest Morrisey // Oct 2020");
-            Console.WriteLine("Thank you for supporting your local dentist!!!");
-            Console.WriteLine("Winners drink water");
-            Console.WriteLine("FBI ANTI-PIRACY WARNING");
-            WaitForKey("", 1000);
-        }
-
-        /////////////// UI UTLILTIES ///////////////
-        public static void WaitForKey(string message, int waitTime)
-        {
-            //Basically a CR with text output so the user knows what it's asking for
-            Console.WriteLine(message);
-            Thread.Sleep(waitTime);// Waits for player to read team info
-            Console.ReadLine();
-        }
-
-        public static void Pause(string message, int waitTime)
-        {
-            //Basically a CR with text output so the user knows what it's asking for
-            Console.WriteLine(message);
-            Thread.Sleep(waitTime);// Waits for player to read team info
-            //Great for Pseudo Loadscreens
-        }
-
-        public static void Clear()
-        {
-            //Clears the menu
-            Console.Clear();
-        }
-
-        public static void BlinkerTrip(string text, int blinkNum, int milliseconds)
-        {
-            //COPIED AND MODIFIED FROM STACKOVERFLOW https://stackoverflow.com/questions/4755204/adding-line-break
-            //Takes in custom text, repeats three times, blinks as much as you like, and at a set interval
-
-            bool visible = true;
-            for (int i = 0; i < blinkNum; i++)
-            {
-                string alert = visible ? ($"{text} {text} {text}") : "";
-                visible = !visible;
-                Console.Clear();
-                Console.Write("{0}\n", alert);
-                Thread.Sleep(milliseconds);
-            }
-        }
-
-
-        public static void BlinkerSingle(string text, int blinkNum, int milliseconds)
-        {
-            //COPIED AND MODIFIED FROM STACKOVERFLOW https://stackoverflow.com/questions/4755204/adding-line-break
-            //Takes in custom text, repeats three times, blinks as much as you like, and at a set interval
-
-            bool visible = true;
-            for (int i = 0; i < blinkNum; i++)
-            {
-                string alert = visible ? ($"{text}") : "";
-                visible = !visible;
-                Console.Clear();
-                Console.WriteLine();
-                Console.Write("{0}\n", alert);
-                Thread.Sleep(milliseconds);
-            }
         }
 
         /////////////// MENU EXTRAS ///////////////
@@ -222,13 +160,9 @@ namespace SweepstakesManager
                 case "hash": Console.WriteLine("###################"); break;
                 case "hashlong": Console.WriteLine("########################"); break;
                 case "div": Console.Write(" || "); break;
-                default: Console.WriteLine("/In/Valid//Menu//Decorator/"); break;
+                default: Console.WriteLine("//Invalid//Menu//Decorator//"); break;
 
             }
         }
-
-
-
-
     }
 }

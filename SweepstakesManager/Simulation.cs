@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SweepstakesManager
 {
@@ -14,33 +10,31 @@ namespace SweepstakesManager
     public class Simulation
     {
         MarketingFirm marketingFirm;
-        
-        public Simulation()
-        {
 
-        }
-        
         public void Run()
         {
-            int testLoops = 5;
-            for (int i = 0; i < testLoops; i++)
-            {
-                CreateMarketingFirmWithManager();
+            CreateMarketingFirmWithManager();   // Creates a Stack or Queue
 
-                marketingFirm.CreateSweepstakes();
+            marketingFirm.CreateSweepstakes();  // Creates the individual contest
 
-                marketingFirm.ManageSweepstakes();
-                Console.ReadLine();
-            }
+            marketingFirm.ManageSweepstakes();  // Manage the contest / sweepstakes
+
             Console.ReadLine();
         }
 
         /// <summary>
         /// Creates the marketing firm and sets the stack/queue type
+        /// taking advantage of dependency injection and the factory design pattern
         /// </summary>
+
+        /* This uses dependency injection of the ISweepstakes interface
+         * in conjunction with a Factory Design Pattern allowing for
+         * future possibility to extend functionality for other data management
+         * implementations such as Lists or other data structures. */
+
         public void CreateMarketingFirmWithManager()
         {
-            
+
             string SManagerType;
 
             bool askAgain = false;
@@ -48,13 +42,21 @@ namespace SweepstakesManager
             {
                 switch (SManagerType = UI.GetUserInputFor("Select Queue or Stack"))
                 {
-                    case "stack": 
-                        marketingFirm = new MarketingFirm(new SweepstakesStackManager()); 
+                    case "stack":
+                        marketingFirm = new MarketingFirm(new SweepstakesStackManager());
                         askAgain = false; break;
 
-                    case "queue": 
-                        marketingFirm = new MarketingFirm(new SweepstakesQueueManager()); 
+                    case "queue":
+                        marketingFirm = new MarketingFirm(new SweepstakesQueueManager());
                         askAgain = false; break;
+                    /* ------------------------------------------------------------------------
+                     * Because of DI and the Factory Design Pattern, adding additional functionally is as easy 
+                     * as adding another case statement and a new class that interfaces with ISweepstakesManager.
+                     * 
+                     * case "Heap":
+                            marketingFirm = new MarketingFirm(new Sweepstakes_Heap_Manager());
+                            askAgain = false; break;
+                    * ------------------------------------------------------------------------ */
 
                     default: Console.WriteLine("Invalid Input"); askAgain = true; break;
                 }
@@ -62,11 +64,14 @@ namespace SweepstakesManager
 
         }
 
+
+
         /// <summary>
         /// IMPLEMENTATION FOR UI
         /// </summary>
         /// <para>RETURN LATER</para>
-        /*
+        /* This is for future implementation of UI for the marketing firm user
+
         public void LogicMainMenu()
         {
             UI.DisplayMainMenu();

@@ -8,8 +8,6 @@ namespace SweepstakesManager
 {
     /// <summary>
     /// <para>STACK</para>
-    /// </summary>
-    /// /// <summary>
     /// Adds a SweepStakes to the stack.
     /// Last-in-first-out (LIFO) collection
     /// </summary>
@@ -23,12 +21,20 @@ namespace SweepstakesManager
         {
             _stack = new Stack<Sweepstakes>();
         }
-        
+
+        /// <summary>
+        /// Adds a new Sweepstakes to the Stack
+        /// </summary>
+        /// <param name="sweepstakes"></param>
         public void InsertSweepstakes(Sweepstakes sweepstakes)
         {
             _stack.Push(sweepstakes);
         }
 
+        /// <summary>
+        /// Allows the user to call a Sweepstakes to be managed 
+        /// </summary>
+        /// <returns></returns>
         public Sweepstakes GetSweepstakes()
         {
             return _stack.Peek();

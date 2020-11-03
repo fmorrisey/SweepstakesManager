@@ -1,33 +1,29 @@
-﻿using System;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Auth.OAuth2.Flows;
+using Google.Apis.Util;
+using Google.Apis.Util.Store;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using MailKit.Net.Smtp;
-using MailKit;
-using MimeKit;
-using Google.Apis.Auth.OAuth2;
-using System.Security.Cryptography.X509Certificates;
-using Google.Apis.Auth.OAuth2.Flows;
-using Google.Apis.Util.Store;
-using Google.Apis.Util;
 using System.Threading;
-using MailKit.Security;
-using MailKit.Net.Imap;
+using System.Threading.Tasks;
 
 namespace SweepstakesManager
 {
     public class Sweepstakes
     {
         /// <summary>
-        /// <para>Sweepstakes</para>
-        /// 
+        /// <para>Sweepstakes Test</para>
+        /// <li>test</li>
+        /// <ui>test</ui>
         /// </summary>
         private Dictionary<int, Contestant> _contestants;
         private List<int> _RegistrationID;
         private int _counter;
-        
+
         private string _name;
         public string Name
         {
@@ -41,45 +37,83 @@ namespace SweepstakesManager
             _contestants = new Dictionary<int, Contestant>();
             _counter = 0;
             _RegistrationID = new List<int>(_counter);
-            
+
         }
 
+        /// <summary>
+        /// After contestant is created, they registered into the system
+        /// The RegID for the contestant becomes their Dictionary Key
+        /// </summary>
+        /// <param name="contestant"></param>
         public void RegistraterContestant(Contestant contestant)
         {
             int regID = contestant.RegistrationNumber;
             _contestants.Add(regID, contestant);
         }
 
-        public Contestant CreateNewContestant()
+        /// <summary>
+        /// Manually enter the contestant information
+        /// </summary>
+        /// <returns>A contestant object with information</returns>
+        public Contestant ManuallyCreateNewContestant()
         {
             int regid = GenerateUniqueID();
-            /*
+
             string fName = UI.CreateName("Enter First Name");
             string lName = UI.CreateName("Enter Last Name");
             string email = UI.CreateEmail("Please enter a valid email");
-            Console.WriteLine($"Auto geneated RegID Number is {regid}");
-            */
-            // TheBestTestIn@TheWest.biz
-            Contestant contestant = new Contestant("Her majesty the", "royal lady Wadie the 1st", "wakihe4437@50000z.com", regid);
-            //Contestant contestant = new Contestant(fName, lName, email, regid);
+            Console.WriteLine($"Auto generated RegID Number is {regid}");
+
+            Contestant contestant = new Contestant(fName, lName, email, regid);
             return contestant;
         }
 
+        /// <summary>
+        /// Auto creates the contestant for testing purposes.
+        /// </summary>
+        /// <returns> </returns>
+        public Contestant CreateNewContestant()
+        {
+            int regid = GenerateUniqueID();
+
+            Contestant contestant = new Contestant("Timmy", "Test", "wakihe4437@50000z.com", regid);
+
+            return contestant;
+        }
+
+        /// <summary>
+        /// Picks a winning contestant based on their RegID chosen at random.
+        /// </summary>
+        /// <returns>The winning contestant object</returns>
         public Contestant PickWinner()
         {
             return _contestants[GenerateRandomInt(_contestants.Count())]; // return contestant
         }
 
-        public async Task sendemail(Contestant contestant)
+        /// <summary>
+        /// Passes off to the EmailContestantAsync
+        /// </summary>
+        /// <param name="contestant"></param>
+        /// <returns></returns>
+        public async Task SendEmail(Contestant contestant)
         {
             await EmailContestantAsync(contestant);
         }
 
-        public async Task EmailContestantAsync(Contestant sc)
+        /// <summary>
+        /// Utilizes MailKit and Google APIs to send an email the winning contestant
+        /// </summary>
+        /// <param name="sc">SelectedContestant</param>
+        /// <returns></returns>
+        private async Task EmailContestantAsync(Contestant sc)
         {
             const string GMailAccount = "throwmeawaybreakingben@gmail.com";
 
-            
+            var clientSecrets = new ClientSecrets
+            {
+                ClientId = "oAUTH2 Numbers",
+                ClientSecret = "NOPE SEKERTS"
+            };
 
             var codeFlow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer
             {
@@ -108,7 +142,7 @@ namespace SweepstakesManager
             {
                 Text = $"Congratulations {sc.FirstName} {sc.LastName} \n" +
                         $" You have won the {_name} Sweepstakes! \n" +
-                        $"Just kidding it's your nephew and he sent you this email from his C# .Net application. \n" +
+                        $"Just kidding it's your son and he sent you this email from his C# .Net application. \n" +
                         $"Love ya lots and thank you for sending me to coding to school.\n" +
                         $"Forrest!"
             };
@@ -124,22 +158,13 @@ namespace SweepstakesManager
                 client.Send(message);
                 client.Disconnect(true);
             }
-
-
-            using (var client = new ImapClient())
-            {
-                await client.ConnectAsync("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
-                await client.AuthenticateAsync(oauth2);
-                
-                await client.DisconnectAsync(true);
-
-            }
-
-
-
-            
         }
 
+
+        /// <summary>
+        /// Prints the contestant's information to the console
+        /// </summary>
+        /// <param name="contestant"></param>
         public void PrintContestantInfo(Contestant contestant)
         {
             Console.WriteLine($"Name:  {contestant.FirstName} {contestant.LastName}");
@@ -147,6 +172,10 @@ namespace SweepstakesManager
             Console.WriteLine($"RegID: {contestant.RegistrationNumber} \n");
         }
 
+        /// <summary>
+        /// Creates a new RegID
+        /// </summary>
+        /// <returns></returns>
         private int GenerateUniqueID()
         {
             _counter++;
@@ -154,12 +183,17 @@ namespace SweepstakesManager
             return _counter;
         }
 
-        private int GenerateRandomInt(int contestantNumber)
+        /// <summary>
+        /// Uses GUID Hash to generate a random number based on the number of contestants
+        /// </summary>
+        /// <param name="numberOFContestants"></param>
+        /// <returns>A random number that correlates with a contestant RegID</returns>
+        private int GenerateRandomInt(int numberOFContestants)
         {   // Generates a random number
             Random Random;
             Random = new Random(Guid.NewGuid().GetHashCode());
             int hash = 0;
-            return hash = Random.Next(contestantNumber - 1);
+            return hash = Random.Next(numberOFContestants - 1);
         }
 
     }
