@@ -37,7 +37,7 @@ namespace SweepstakesManager
         /// <returns></returns>
         public Sweepstakes GetSweepstakes()
         {
-            return _stack.Peek();
+            return _stack.Pop();
             
         }
     }

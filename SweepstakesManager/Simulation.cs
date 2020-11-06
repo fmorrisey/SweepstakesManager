@@ -13,7 +13,9 @@ namespace SweepstakesManager
 
         public void Run()
         {
-            CreateMarketingFirmWithManager();   // Creates a Stack or Queue
+            ISweepstakesManager manager= CreateMarketingFirmWithManager();   // Creates a Stack or Queue
+            
+            MarketingFirm marketingFirm = new MarketingFirm(manager);
 
             marketingFirm.CreateSweepstakes();  // Creates the individual contest
 
@@ -32,7 +34,7 @@ namespace SweepstakesManager
          * future possibility to extend functionality for other data management
          * implementations such as Lists or other data structures. */
 
-        public void CreateMarketingFirmWithManager()
+        public ISweepstakesManager CreateMarketingFirmWithManager()
         {
 
             string SManagerType;
@@ -43,12 +45,12 @@ namespace SweepstakesManager
                 switch (SManagerType = UI.GetUserInputFor("Select Queue or Stack"))
                 {
                     case "stack":
-                        marketingFirm = new MarketingFirm(new SweepstakesStackManager());
-                        askAgain = false; break;
+                        return new SweepstakesStackManager();
+                        
 
                     case "queue":
-                        marketingFirm = new MarketingFirm(new SweepstakesQueueManager());
-                        askAgain = false; break;
+                        return new SweepstakesQueueManager();
+                        
                     /* ------------------------------------------------------------------------
                      * Because of DI and the Factory Design Pattern, adding additional functionally is as easy 
                      * as adding another case statement and a new class that interfaces with ISweepstakesManager.
@@ -60,8 +62,9 @@ namespace SweepstakesManager
 
                     default: Console.WriteLine("Invalid Input"); askAgain = true; break;
                 }
-            } while (askAgain == true);
 
+            } while (askAgain == true);
+            return CreateMarketingFirmWithManager();
         }
 
 

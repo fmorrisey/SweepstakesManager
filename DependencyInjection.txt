@@ -1,0 +1,13 @@
+Dependency Injection was used in the MarketingFirm.CS constructor method parameter. This utilizes the interface ISweepstakes that is coupled to the Stack and Queue Data Strcutures. When either is created, the sweepstakes has to be implemented and created along with the manager for the MarketingFirm upon creation. 
+
+This allows the program to be expanded to other data types or structures easily without an entire rewrite. It unltimaeltly allows the user to have a choice in how the multiple various sweepstakes will be managed and on what data type. 
+
+The following as an exaple of how a new data collection method can be added to the program.
+/* ------------------------------------------------------------------------
+/* Because of DI and the Factory Design Pattern, adding additional functionally is as easy 
+/* as adding another case statement and a new class that interface with only 3 lines of code.
+/* 
+/* case "Heap":
+	marketingFirm = new MarketingFirm(new Sweepstakes_Heap_Manager());
+	askAgain = false; break;
+/* ------------------------------------------------------------------------ */
